@@ -1,0 +1,21 @@
+CREATE TABLE article (
+    _id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source TEXT NOT NULL,
+    author TEXT NOT NULL,
+    content TEXT NOT NULL,
+    description TEXT NOT NULL,
+    publishedAt TEXT NOT NULL,
+    title TEXT NOT NULL,
+    url TEXT NOT NULL,
+    urlToImage TEXT NOT NULL
+);
+
+insert:
+INSERT OR REPLACE INTO article(source, author, content, description, publishedAt, title, url, urlToImage)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+selectAll:
+SELECT * FROM article;
+
+deleteAll:
+DELETE FROM article;

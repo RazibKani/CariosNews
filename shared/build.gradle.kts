@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     kotlin("android.extensions")
+    id("kotlinx-serialization")
     id("com.android.library")
     id("com.squareup.sqldelight")
 }
@@ -31,7 +32,7 @@ kotlin {
             dependencies {
                 implementation(Dependency.kotlinxSerializationCore)
 
-                // Cache
+                // Database
                 implementation(Dependency.sqldelightRuntime)
 
                 // Coroutines
@@ -53,7 +54,7 @@ kotlin {
             dependencies {
                 implementation("com.google.android.material:material:1.2.0")
 
-                // Cache
+                // Database
                 implementation(Dependency.sqldelightAndroid)
 
                 // HTTP
@@ -68,7 +69,7 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                // Cache
+                // Database
                 implementation(Dependency.sqldelightNative)
 
                 // HTTP
@@ -76,6 +77,13 @@ kotlin {
             }
         }
         val iosTest by getting
+    }
+}
+
+sqldelight {
+    database("CariosNewsDatabase") {
+        packageName = "id.codepresso.cariosnews.shared.sql"
+        sourceFolders = listOf("sqldelight")
     }
 }
 
