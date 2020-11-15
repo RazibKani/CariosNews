@@ -3,7 +3,8 @@ object AppVersion {
     const val name = "1.0"
 }
 
-object AndroidVersion {
+object AndroidSDKVersion {
+    const val compile = 30
     const val minimum = 24
     const val target = 30
 }
