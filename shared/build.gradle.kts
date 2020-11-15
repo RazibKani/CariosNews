@@ -59,6 +59,10 @@ kotlin {
 
                 // HTTP
                 implementation(Dependency.ktorAndroid)
+
+                // Lifecycle
+                implementation(Dependency.lifecycleExtension)
+                implementation(Dependency.lifecycleViewModelKtx)
             }
         }
         val androidTest by getting {

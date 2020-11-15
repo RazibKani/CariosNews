@@ -2,39 +2,48 @@ package id.codepresso.cariosnews.shared.data.repository
 
 import id.codepresso.cariosnews.shared.data.database.Database
 import id.codepresso.cariosnews.shared.data.entity.Article
-import id.codepresso.cariosnews.shared.data.service.ArticlesServices
-import id.codepresso.cariosnews.shared.domain.Resource
+import id.codepresso.cariosnews.shared.data.service.ArticlesServiceImpl
+import id.codepresso.cariosnews.shared.domain.*
 import id.codepresso.cariosnews.shared.domain.repository.ArticlesRepository
+import id.codepresso.cariosnews.shared.presentation.base.ioDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 /**
  * Crafted by Razib Kani Maulidan on 15/11/20.
  **/
 
 class ArticlesRepositoryImpl(
-    private val service: ArticlesServices,
+    private val service: ArticlesServiceImpl,
     private val database: Database<Article>
 ) : ArticlesRepository {
 
     override fun getArticles(): Flow<Resource<List<Article>>> {
         return flow {
             emit(Resource.loading())
-
             val cachedArticles = database.selectAll()
 
             if (cachedArticles.isNotEmpty()) {
                 emit(Resource.success(cachedArticles))
             } else {
-                val serviceResource = service.getArticles()
-                emit(serviceResource)
+                val response = service.getArticles()
 
-                serviceResource.data?.let { articles ->
-                    database.clear()
-                    database.insertAll(articles)
+                when (response) {
+                    is ApiSuccessResponse -> {
+                        emit(Resource.success(response.body))
+                    }
+                    is ApiEmptyResponse -> {
+                        emit(Resource.success(null))
+                    }
+                    is ApiErrorResponse -> {
+                        emit(Resource.error(
+                            Error(response.statusCode, response.errorMessage), null
+                        ))
+                    }
                 }
             }
-        }
+        }.flowOn(ioDispatcher)
     }
 
 }

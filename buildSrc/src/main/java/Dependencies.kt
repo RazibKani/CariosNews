@@ -4,6 +4,7 @@ object Version {
     const val kotlin = "1.4.10"
 
     // Android
+    const val lifecycle = "2.2.0"
 
     // Native
     const val ktor = "1.4.1"
@@ -22,6 +23,8 @@ object Dependency {
     // Android
     const val sqldelightAndroid = "com.squareup.sqldelight:android-driver:${Version.sqldelight}"
     const val ktorAndroid = "io.ktor:ktor-client-android:${Version.ktor}"
+    const val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Version.lifecycle}"
+    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycle}"
 
     // IOS
     const val sqldelightNative = "com.squareup.sqldelight:native-driver:${Version.sqldelight}"
