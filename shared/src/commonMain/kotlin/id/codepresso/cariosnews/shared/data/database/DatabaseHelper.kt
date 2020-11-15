@@ -11,7 +11,7 @@ expect fun getDriver(dbName: String): SqlDriver
 
 class DatabaseHelper(
     dbName: String,
-    sqlDriver: SqlDriver) {
+    sqlDriver: SqlDriver?) {
 
     val driver = sqlDriver ?: getDriver(dbName)
     val database = CariosNewsDatabase(driver)

@@ -1,7 +1,7 @@
 package id.codepresso.cariosnews.shared.data.mapper
 
 import id.codepresso.cariosnews.shared.data.entity.Article
-import id.codepresso.cariosnews.shared.data.entity.ArticlesResponse
+import id.codepresso.cariosnews.shared.domain.model.ArticlesResponse
 
 /**
  * Crafted by Razib Kani Maulidan on 14/11/20.

@@ -1,4 +1,4 @@
-package id.codepresso.cariosnews.shared.data.entity
+package id.codepresso.cariosnews.shared.domain.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
