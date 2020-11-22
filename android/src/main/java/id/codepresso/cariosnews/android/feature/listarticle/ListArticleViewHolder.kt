@@ -25,7 +25,7 @@ class ListArticleViewHolder(
         }
     }
 
-    private fun ImageView.load(url: String) {
+    private fun ImageView.load(url: String?) {
         Picasso.get().load(url).into(this)
     }
 }

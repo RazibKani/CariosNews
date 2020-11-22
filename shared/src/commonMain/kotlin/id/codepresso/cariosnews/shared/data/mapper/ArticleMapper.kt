@@ -13,8 +13,8 @@ class ArticleMapper : Mapper<ArticlesResponse, List<Article>> {
         return response.articles.map { articleResponse ->
             Article(
                 source = articleResponse.source.name,
-                author = articleResponse.author ?: "",
-                content = articleResponse.content ?: "",
+                author = articleResponse.author,
+                content = articleResponse.content,
                 description = articleResponse.description,
                 publishedAt = articleResponse.publishedAt,
                 title = articleResponse.title,
