@@ -12,7 +12,7 @@ object Versions {
 
     // Native
     const val ktor = "1.4.1"
-    const val kotlinxSerialization = "1.0.1"
+    const val kotlinxSerialization = "1.0.0-RC"
     const val coroutines = "1.3.9-native-mt-2"
     const val sqldelight = "1.4.3"
 }

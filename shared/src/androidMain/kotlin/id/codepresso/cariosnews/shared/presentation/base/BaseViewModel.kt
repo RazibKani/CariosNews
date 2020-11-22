@@ -15,5 +15,4 @@ actual open class BaseViewModel actual constructor(): ViewModel() {
     actual override fun onCleared() {
         super.onCleared()
     }
-
 }
