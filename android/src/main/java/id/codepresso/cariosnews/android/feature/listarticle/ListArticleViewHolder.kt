@@ -19,9 +19,10 @@ class ListArticleViewHolder(
     fun bind(article: Article) {
         with(itemBinding) {
             ivImage.load(article.urlToImage)
+            tvSource.text = article.source
+            tvDate.text = article.publishedAt
             tvTitle.text = article.title
             tvDescription.text = article.description
-            tvAuthorAndDate.text = "${article.author} - ${article.publishedAt}"
         }
     }
 
