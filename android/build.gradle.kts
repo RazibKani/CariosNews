@@ -3,33 +3,47 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
 }
-group = "id.codepresso.cariosnews"
-version = "1.0-SNAPSHOT"
 
-repositories {
-    gradlePluginPortal()
-    google()
-    jcenter()
-    mavenCentral()
-}
-dependencies {
-    implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-}
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(AndroidSDKVersion.compile)
     defaultConfig {
         applicationId = "id.codepresso.cariosnews.android"
-        minSdkVersion(24)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+        minSdkVersion(AndroidSDKVersion.minimum)
+        targetSdkVersion(AndroidSDKVersion.target)
+        versionCode = AppVersion.code
+        versionName = AppVersion.name
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        isWarningsAsErrors = true
+        isAbortOnError = true
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(kotlin("stdlib", Versions.kotlin))
+    implementation(Deps.material)
+    implementation(Deps.AndroidX.appCompat)
+    implementation(Deps.AndroidX.constraintLayout)
+    implementation(Deps.Koin.core)
+    implementation(Deps.Koin.android)
+    implementation(Deps.Coroutines.core)
+    implementation(Deps.Coroutines.android)
+    implementation(Deps.picasso)
 }

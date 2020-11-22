@@ -10,16 +10,16 @@ import id.codepresso.cariosnews.shared.domain.model.ArticlesResponse
 class ArticleMapper : Mapper<ArticlesResponse, List<Article>> {
 
     override fun transform(response: ArticlesResponse): List<Article> {
-        return response.articles.map {
+        return response.articles.map { articleResponse ->
             Article(
-                it.source.name,
-                it.author,
-                it.content,
-                it.description,
-                it.publishedAt,
-                it.title,
-                it.url,
-                it.urlToImage
+                source = articleResponse.source.name,
+                author = articleResponse.author ?: "",
+                content = articleResponse.content ?: "",
+                description = articleResponse.description,
+                publishedAt = articleResponse.publishedAt,
+                title = articleResponse.title,
+                url = articleResponse.url,
+                urlToImage = articleResponse.urlToImage
             )
         }
     }

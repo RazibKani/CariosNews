@@ -12,8 +12,8 @@ import org.koin.dsl.module
 actual val platformModule = module {
     single<SqlDriver> {
         AndroidSqliteDriver(
-            schema = CariosNewsDatabase.Schema,
-            context = get(),
+            CariosNewsDatabase.Schema,
+            get(),
             "CariosNewsDb"
         )
     }

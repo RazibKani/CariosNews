@@ -48,7 +48,7 @@ class ArticlesServiceImpl(
 
         val statusCode = response.status.value
 
-        return if (response.status.isSuccess()) {
+        return if (statusCode in 200..300) {
             val jsonStringResponse = response.readText()
 
             if (statusCode == 204) {

@@ -6,10 +6,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(Dependency.androidGradle)
-        classpath(Dependency.kotlinGradle)
-        classpath(Dependency.kotlinSerialization)
-        classpath(Dependency.sqldelightGradle)
+        classpath(Deps.androidGradle)
+        classpath(Deps.kotlinGradle)
+        classpath(Deps.kotlinSerialization)
+        classpath(Deps.SqlDelight.gradle)
     }
 }
 

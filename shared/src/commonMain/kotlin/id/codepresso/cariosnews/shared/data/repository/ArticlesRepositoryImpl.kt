@@ -2,7 +2,7 @@ package id.codepresso.cariosnews.shared.data.repository
 
 import id.codepresso.cariosnews.shared.data.database.Database
 import id.codepresso.cariosnews.shared.data.entity.Article
-import id.codepresso.cariosnews.shared.data.service.ArticlesServiceImpl
+import id.codepresso.cariosnews.shared.data.service.ArticlesService
 import id.codepresso.cariosnews.shared.domain.*
 import id.codepresso.cariosnews.shared.domain.repository.ArticlesRepository
 import id.codepresso.cariosnews.shared.presentation.base.ioDispatcher
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flowOn
  **/
 
 class ArticlesRepositoryImpl(
-    private val service: ArticlesServiceImpl,
+    private val service: ArticlesService,
     private val database: Database<Article>
 ) : ArticlesRepository {
 
@@ -37,9 +37,11 @@ class ArticlesRepositoryImpl(
                         emit(Resource.success(null))
                     }
                     is ApiErrorResponse -> {
-                        emit(Resource.error(
-                            Error(response.statusCode, response.errorMessage), null
-                        ))
+                        emit(
+                            Resource.error(
+                                Error(response.statusCode, response.errorMessage), null
+                            )
+                        )
                     }
                 }
             }

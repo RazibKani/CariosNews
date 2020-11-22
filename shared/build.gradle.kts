@@ -22,6 +22,11 @@ android {
             isMinifyEnabled = false
         }
     }
+
+    lintOptions {
+        isWarningsAsErrors = true
+        isAbortOnError = true
+    }
 }
 
 kotlin {
@@ -53,36 +58,42 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Dependency.kotlinxSerializationCore)
+                implementation(Deps.kotlinxSerializationCore)
 
                 // Database
-                implementation(Dependency.sqldelightRuntime)
+                implementation(Deps.SqlDelight.runtime)
 
                 // Coroutines
-                implementation(Dependency.coroutinesCore)
+                implementation(Deps.Coroutines.core) {
+                    version {
+                        strictly(Versions.coroutines)
+                    }
+                }
 
                 // HTTP
-                implementation(Dependency.ktorCore)
-                implementation(Dependency.ktorJson)
-                implementation(Dependency.ktorSerialization)
+                implementation(Deps.Ktor.core)
+                implementation(Deps.Ktor.json)
+                implementation(Deps.Ktor.serialization)
 
                 // Koin
-                implementation(Dependency.koinCore)
+                implementation(Deps.Koin.core)
             }
         }
         val commonTest by getting
 
         val androidMain by getting {
             dependencies {
+                implementation(kotlin("stdlib", Versions.kotlin))
+
                 // Database
-                implementation(Dependency.sqldelightAndroid)
+                implementation(Deps.SqlDelight.android)
 
                 // HTTP
-                implementation(Dependency.ktorAndroid)
+                implementation(Deps.Ktor.android)
 
                 // Lifecycle
-                implementation(Dependency.lifecycleExtension)
-                implementation(Dependency.lifecycleViewModelKtx)
+                implementation(Deps.AndroidX.lifecycleExtension)
+                implementation(Deps.AndroidX.lifecycleViewModelKtx)
             }
         }
         val androidTest by getting
@@ -90,13 +101,10 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 // Database
-                implementation(Dependency.sqldelightNative)
+                implementation(Deps.SqlDelight.native)
 
                 // HTTP
-                implementation(Dependency.ktorIOS)
-
-                // Koin
-                implementation(Dependency.koinCore)
+                implementation(Deps.Ktor.ios)
             }
         }
         val iosTest by getting

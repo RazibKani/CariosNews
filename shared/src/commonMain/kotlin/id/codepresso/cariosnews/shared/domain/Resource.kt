@@ -5,12 +5,12 @@ package id.codepresso.cariosnews.shared.domain
  **/
 
 data class Resource<out T>(
-    val status: Status,
+    val state: State,
     val data: T?,
     val error: Error?
 ) {
 
-    enum class Status {
+    enum class State {
         SUCCESS,
         ERROR,
         LOADING
@@ -19,7 +19,7 @@ data class Resource<out T>(
     companion object {
         fun <T> success(data: T?): Resource<T> {
             return Resource(
-                Status.SUCCESS,
+                State.SUCCESS,
                 data,
                 null
             )
@@ -27,7 +27,7 @@ data class Resource<out T>(
 
         fun <T> error(error: Error?, data: T? = null): Resource<T> {
             return Resource(
-                Status.ERROR,
+                State.ERROR,
                 data,
                 error
             )
@@ -35,7 +35,7 @@ data class Resource<out T>(
 
         fun <T> loading(data: T? = null): Resource<T> {
             return Resource(
-                Status.LOADING,
+                State.LOADING,
                 data,
                 null
             )
