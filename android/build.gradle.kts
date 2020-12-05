@@ -41,8 +41,6 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.AndroidX.appCompat)
     implementation(Deps.AndroidX.constraintLayout)
-    implementation(Deps.Koin.core)
-    implementation(Deps.Koin.android)
     implementation(Deps.Coroutines.core)
     implementation(Deps.Coroutines.android)
     implementation(Deps.picasso)

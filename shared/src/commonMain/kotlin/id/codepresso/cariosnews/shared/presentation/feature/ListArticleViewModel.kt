@@ -14,5 +14,4 @@ class ListArticleViewModel(getArticlesUseCase: GetArticlesUseCase) : BaseViewMod
 
     var articlesResource
             = getArticlesUseCase.invoke().asCommonFlow()
-
 }

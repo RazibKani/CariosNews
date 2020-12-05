@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
  **/
 
 interface ArticlesRepository {
-    
+
     fun getArticles(): Flow<Resource<List<Article>>>
 
 }

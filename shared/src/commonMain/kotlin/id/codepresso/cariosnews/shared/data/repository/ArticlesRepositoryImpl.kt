@@ -28,7 +28,6 @@ class ArticlesRepositoryImpl(
                 emit(Resource.success(cachedArticles))
             } else {
                 val response = service.getArticles()
-
                 when (response) {
                     is ApiSuccessResponse -> {
                         emit(Resource.success(response.body))
@@ -37,11 +36,8 @@ class ArticlesRepositoryImpl(
                         emit(Resource.success(null))
                     }
                     is ApiErrorResponse -> {
-                        emit(
-                            Resource.error(
-                                Error(response.statusCode, response.errorMessage), null
-                            )
-                        )
+                        val error = Error(response.statusCode, response.errorMessage)
+                        emit(Resource.error(null, error))
                     }
                 }
             }

@@ -6,11 +6,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.codepresso.cariosnews.android.databinding.ActivityListArticleBinding
 import id.codepresso.cariosnews.android.feature.base.BaseActivity
+import id.codepresso.cariosnews.shared.ServiceLocator
 import id.codepresso.cariosnews.shared.data.entity.Article
-import id.codepresso.cariosnews.shared.domain.Resource
-import id.codepresso.cariosnews.shared.presentation.feature.ListArticleViewModel
+import id.codepresso.cariosnews.shared.domain.UIState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.koin.android.ext.android.inject
 
 /**
  * Crafted by Razib Kani Maulidan on 22/11/20.
@@ -19,7 +18,7 @@ import org.koin.android.ext.android.inject
 @ExperimentalCoroutinesApi
 class ListArticleActivity : BaseActivity() {
 
-    private val viewModel by inject<ListArticleViewModel>()
+    private val viewModel by lazy { ServiceLocator.listArticleViewModel }
     private val listArticleAdapter by lazy { ListArticleAdapter() }
     private val linearLayoutManager by lazy { LinearLayoutManager(this) }
 
@@ -46,16 +45,16 @@ class ListArticleActivity : BaseActivity() {
     private fun subscribeListArticles() {
         viewModel.articlesResource.watch { resource ->
             when (resource.state) {
-                Resource.State.LOADING -> {
+                UIState.Loading -> {
                     showLoadingState()
                 }
-                Resource.State.SUCCESS -> {
+                UIState.Success -> {
                     hideLoadingState()
                     resource.data?.let { listArticle ->
                         showData(listArticle)
                     }
                 }
-                Resource.State.ERROR -> {
+                UIState.Error -> {
                     hideLoadingState()
                     resource.error?.let { error ->
                         showErrorMessage(error.code, error.message)

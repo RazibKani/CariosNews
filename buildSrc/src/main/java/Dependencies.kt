@@ -1,7 +1,6 @@
 object Versions {
     const val androidGradle = "4.1.0"
     const val kotlin = "1.4.10"
-    const val koin = "3.0.0-alpha-4"
 
     // Android
     const val lifecycle = "2.2.0"
@@ -28,11 +27,6 @@ object Deps {
     object Coroutines {
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
-    }
-
-    object Koin {
-        const val core = "org.koin:koin-core:${Versions.koin}"
-        const val android = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
     }
 
     object SqlDelight {

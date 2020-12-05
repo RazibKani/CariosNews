@@ -74,9 +74,6 @@ kotlin {
                 implementation(Deps.Ktor.core)
                 implementation(Deps.Ktor.json)
                 implementation(Deps.Ktor.serialization)
-
-                // Koin
-                implementation(Deps.Koin.core)
             }
         }
         val commonTest by getting
@@ -137,5 +134,6 @@ tasks.getByName("build").dependsOn(packForXcode)
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs = listOf("-Xobjc-generics")
     }
 }
